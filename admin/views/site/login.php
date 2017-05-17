@@ -1,35 +1,39 @@
 <?php
-
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\LoginForm */
-
+use yii\captcha\Captcha;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+<?PHP $form = ActiveForm::begin([
+    'id' => 'login-form',
+    'options' => ['class' => 'form-horizontal', 'placeholder' => 'email', 'type' => 'email'],
+]);
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+?>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
 
-            <?php ActiveForm::end(); ?>
-        </div>
+<?= $form->field($model, 'username')->input('text', ['class' => 'form-control', 'placeholder' => 'Username', 'autofocus' => true])->label(false) ?>
+<!--    <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
+<?= $form->field($model, 'password')->input('password', ['class' => 'form-control', 'placeholder' => 'Password'])->label(false) ?>
+<!--    <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
+
+<?= $form->field($model, 'verifyCode')->label(false)->widget(Captcha::className(), [
+    'template' => '<div class="row"><div class="col-lg-5">{image}</div><div class="col-lg-7">{input}</div></div>',
+]) ?>
+
+<div class="row">
+    <div class="col-xs-8">
     </div>
+    <!-- /.col -->
+    <div class="col-xs-4">
+        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+    </div>
+    <!-- /.col -->
 </div>
+
+
+<?php ActiveForm::end() ?>

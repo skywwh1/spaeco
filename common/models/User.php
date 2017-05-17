@@ -13,15 +13,35 @@ use yii\web\IdentityInterface;
  * User model
  *
  * @property integer $id
+ * @property integer $parent_id
  * @property string $username
+ * @property string $firstname
+ * @property string $lastname
+ * @property integer $type
+ * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
- * @property string $email
- * @property string $auth_key
+ * @property integer $created_time
+ * @property integer $updated_time
  * @property integer $status
- * @property integer $create_time
- * @property integer $update_time
- * @property string $password write-only password
+ * @property string $email
+ * @property string $company
+ * @property string $phone1
+ * @property string $phone2
+ * @property string $weixin
+ * @property integer $qq
+ * @property string $skype
+ * @property string $alipay
+ * @property string $city
+ * @property string $country
+ * @property string $address
+ * @property string $lang
+ * @property string $timezone
+ * @property integer $firstaccess
+ * @property integer $lastaccess
+ * @property integer $picture
+ * @property integer $suspended
+ * @property integer $deleted
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -52,14 +72,23 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            [['username', 'email'], 'required'],
+            ['username', 'filter', 'filter' => 'trim'],
+            [['parent_id', 'type', 'status', 'qq', 'firstaccess', 'lastaccess', 'picture', 'suspended', 'deleted'], 'integer'],
+            [['username', 'firstname', 'lastname', 'alipay', 'timezone'], 'string', 'max' => 100],
+            [['company', 'address'], 'string', 'max' => 255],
+            [['email', 'weixin', 'skype'], 'string', 'max' => 50],
+            [['phone1', 'phone2'], 'string', 'max' => 20],
+            [['city'], 'string', 'max' => 120],
+            [['country'], 'string', 'max' => 10],
+            [['lang'], 'string', 'max' => 30],
+            [['username'], 'unique'],
+            [['email'], 'unique'],
+            [['password_hash'], 'safe'],
+//            [['password_reset_token'], 'unique'],
         ];
     }
 
@@ -192,5 +221,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public static function getBDList($username)
+    {
+        //->andWhere(["type"=>8])
+        return static::find()->select("username")->where(["like", "username", $username])->column();
     }
 }
