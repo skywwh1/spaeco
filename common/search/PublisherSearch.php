@@ -18,7 +18,7 @@ class PublisherSearch extends Publisher
     public function rules()
     {
         return [
-            [['id', 'type', 'pm', 'om', 'master_publisher', 'payment_term', 'created_time', 'updated_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'status', 'total_revenue', 'payable', 'recommended', 'os'], 'integer'],
+            [['id', 'type', 'pm', 'om', 'master_publisher', 'payment_term', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'status', 'total_revenue', 'payable', 'recommended', 'os'], 'integer'],
             [['username', 'firstname', 'lastname', 'auth_token', 'auth_key', 'password_hash', 'password_reset_token', 'payment_way', 'beneficiary_name', 'bank_country', 'bank_name', 'bank_address', 'swift', 'account_nu_iban', 'company_address', 'system', 'contacts', 'email', 'cc_email', 'company', 'country', 'city', 'address', 'phone1', 'phone2', 'wechat', 'skype', 'alipay', 'lang', 'timezone', 'traffic_source', 'pricing_mode', 'note', 'post_back', 'paid', 'strong_geo', 'strong_category'], 'safe'],
         ];
     }
@@ -65,8 +65,8 @@ class PublisherSearch extends Publisher
             'om' => $this->om,
             'master_publisher' => $this->master_publisher,
             'payment_term' => $this->payment_term,
-            'created_time' => $this->created_time,
-            'updated_time' => $this->updated_time,
+            'create_time' => $this->create_time,
+            'update_time' => $this->update_time,
             'qq' => $this->qq,
             'firstaccess' => $this->firstaccess,
             'lastaccess' => $this->lastaccess,

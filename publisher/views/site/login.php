@@ -4,32 +4,67 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
+use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h1 class="login-panel">Publisher</h1>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Please Sign In</h3>
+            </div>
+            <div class="panel-body">
+                <?PHP $form = ActiveForm::begin([
+                    'id' => 'login-form',
+                ]);
+                ?>
+                <?= $form->field($model, 'username')->input('text', ['class' => 'form-control', 'placeholder' => 'Username', 'autofocus' => true])->label(false) ?>
+                <!--    <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
+                <?= $form->field($model, 'password')->input('password', ['class' => 'form-control', 'placeholder' => 'Password'])->label(false) ?>
+                <!--    <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
 
-    <p>Please fill out the following fields to login:</p>
+                <?= $form->field($model, 'verifyCode')->label(false)->widget(Captcha::className(), [
+                    'template' => '<div class="row"><div class="col-lg-5">{image}</div><div class="col-lg-7">{input}</div></div>',
+                ]) ?>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                <div class="row">
+                    <div class="col-xs-4">
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                    </div>
+                    <div class="col-xs-4">
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                    </div>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    <!-- /.col -->
+                    <div class="col-xs-8" style="text-align: right">
+                        <br>
+                        <p>
+                            <?= Html::a('Home', '@frontendUrl') ?><br>
+                            <?= Html::a('Sign Up', ['/site/signup']) ?><br>
+                            <?= Html::a('Forget password', ['/site/forget']) ?><br>
+                        </p>
+                    </div>
+                    <!-- /.col -->
                 </div>
 
-            <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end() ?>
+            </div>
         </div>
     </div>
 </div>
+
+
+

@@ -18,7 +18,7 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'parent_id', 'type', 'created_time', 'updated_time', 'status', 'qq', 'firstaccess', 'lastaccess', 'picture', 'suspended', 'deleted'], 'integer'],
+            [['id', 'parent_id', 'type', 'create_time', 'update_time', 'status', 'qq', 'firstaccess', 'lastaccess', 'picture', 'suspended', 'deleted'], 'integer'],
             [['username', 'firstname', 'lastname', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'company', 'phone1', 'phone2', 'weixin', 'skype', 'alipay', 'country', 'city', 'address', 'lang', 'timezone'], 'safe'],
         ];
     }
@@ -62,8 +62,8 @@ class UserSearch extends User
             'id' => $this->id,
             'parent_id' => $this->parent_id,
             'type' => $this->type,
-            'created_time' => $this->created_time,
-            'updated_time' => $this->updated_time,
+            'create_time' => $this->create_time,
+            'update_time' => $this->update_time,
             'status' => $this->status,
             'qq' => $this->qq,
             'firstaccess' => $this->firstaccess,

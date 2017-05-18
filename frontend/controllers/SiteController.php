@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\controllers;
 
 use Yii;
@@ -209,5 +210,16 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    public function actionPartner($tag)
+    {
+        if ($tag == 2) {
+            $this->redirect('@publisherUrl');
+        } else if ($tag == 1) {
+            $this->redirect('@advertiserUrl');
+        } else {
+            $this->redirect(['index']);
+        }
     }
 }

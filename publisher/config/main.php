@@ -17,7 +17,7 @@ return [
             'csrfParam' => '_csrf-publisher',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'common\models\Publisher',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-publisher', 'httpOnly' => true],
         ],
@@ -37,14 +37,12 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

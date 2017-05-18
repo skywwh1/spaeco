@@ -48,7 +48,7 @@ AppAsset::register($this);
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -136,6 +136,12 @@ AppAsset::register($this);
                             <a href="/campaign/index" data-menu="campaign-index">
                                 <i class="fa fa-circle-o"></i>
                                 Campaign List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/campaign/create" data-menu="campaign-create">
+                                <i class="fa fa-circle-o"></i>
+                                Campaign Create
                             </a>
                         </li>
                     </ul>

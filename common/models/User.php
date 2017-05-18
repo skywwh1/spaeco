@@ -21,8 +21,8 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
- * @property integer $created_time
- * @property integer $updated_time
+ * @property integer $create_time
+ * @property integer $update_time
  * @property integer $status
  * @property string $email
  * @property string $company

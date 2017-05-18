@@ -1,11 +1,14 @@
 <?php
-namespace backend\controllers;
 
-use Yii;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
+namespace publisher\controllers;
+
 use common\models\LoginForm;
+use publisher\models\PubLoginForm;
+use publisher\models\PubSignupForm;
+use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\Controller;
 
 /**
  * Site controller
@@ -22,7 +25,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'forget', 'test', 'signup', 'captcha'],
                         'allow' => true,
                     ],
                     [
@@ -50,6 +53,18 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                //  'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                // 'backColor'=>0x000000,//背景颜色
+                'maxLength' => 4, //最大显示个数
+                'minLength' => 4,//最少显示个数
+//                'padding' => 10,//间距
+                'height' => 35,//高度
+                'width' => 130,  //宽度
+//                'foreColor'=>0xffffff,     //字体颜色
+                'offset' => 5,        //设置字符偏移量 有效果
+            ],
         ];
     }
 
@@ -70,11 +85,12 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new PubLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
@@ -94,5 +110,23 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionSignup()
+    {
+
+        $this->layout = "login";
+        $model = new PubSignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 }

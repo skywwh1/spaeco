@@ -1,4 +1,5 @@
 <?php
+
 namespace admin\controllers;
 
 use Yii;
@@ -23,12 +24,12 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'forget', 'test', 'signup','captcha'],
+                        'actions' => ['login', 'error', 'forget', 'test', 'signup', 'captcha'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index', 'forget', 'test','info'],
+                        'actions' => ['logout', 'index', 'forget', 'test', 'info'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -59,10 +60,10 @@ class SiteController extends Controller
                 'maxLength' => 4, //最大显示个数
                 'minLength' => 4,//最少显示个数
 //                'padding' => 10,//间距
-                'height'=>35,//高度
+                'height' => 35,//高度
                 'width' => 130,  //宽度
 //                'foreColor'=>0xffffff,     //字体颜色
-                'offset'=>5,        //设置字符偏移量 有效果
+                'offset' => 5,        //设置字符偏移量 有效果
             ],
         ];
     }
@@ -110,4 +111,5 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
 }

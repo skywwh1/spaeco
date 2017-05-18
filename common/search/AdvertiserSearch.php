@@ -18,7 +18,7 @@ class AdvertiserSearch extends Advertiser
     public function rules()
     {
         return [
-            [['id', 'payment_term', 'pm', 'bd', 'status', 'type', 'created_time', 'updated_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted'], 'integer'],
+            [['id', 'payment_term', 'pm', 'bd', 'status', 'type', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted'], 'integer'],
             [['username', 'firstname', 'lastname', 'system', 'contacts', 'pricing_mode', 'auth_token', 'auth_key', 'password_hash', 'password_reset_token', 'post_parameter', 'email', 'cc_email', 'company', 'country', 'city', 'address', 'phone1', 'phone2', 'weixin', 'skype', 'alipay', 'lang', 'timezone', 'ip_whitelist', 'note'], 'safe'],
             [['total_revenue', 'receivable', 'received'], 'number'],
         ];
@@ -69,8 +69,8 @@ class AdvertiserSearch extends Advertiser
             'receivable' => $this->receivable,
             'received' => $this->received,
             'type' => $this->type,
-            'created_time' => $this->created_time,
-            'updated_time' => $this->updated_time,
+            'create_time' => $this->create_time,
+            'update_time' => $this->update_time,
             'qq' => $this->qq,
             'firstaccess' => $this->firstaccess,
             'lastaccess' => $this->lastaccess,
