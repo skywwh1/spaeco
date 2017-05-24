@@ -17,47 +17,16 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'payment_term')->dropDownList(ModelsUtil::payment_term) ?>
-    <?= $form->field($model, 'pm')->textInput(['maxlength' => true, 'readonly' => true]) ?>
-    <?= $form->field($model, 'bd')->widget(Typeahead::classname(), [
-        'pluginOptions' => ['highlight' => true],
-        'options' => ['value' => isset($model->bd) ? $model->bd0->username : '',],
-        'dataset' => [
-            [
-                'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('value')",
-                'display' => 'value',
-                'remote' => [
-                    'url' => Url::to(['advertiser/get_bd']) . '?bd=%QUERY',
-                    'wildcard' => '%QUERY'
-                ]
-            ]],
-    ]) ?>
+    <?= $form->field($model, 'firstname')->textInput(['maxlength' => true])->label('Full Name') ?>
 
-    <?= $form->field($model, 'contacts')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'system')->dropDownList(
-        System::find()
-            ->select(['name','value'])
-            ->orderBy('id')
-            ->indexBy('value')
-            ->column()
-    ) ?>
-    <?= $form->field($model, 'post_parameter')->textInput(['placeholder' => 'ex: tx={click_id}&publisher={ch_id}']) ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'cc_email')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'status')->dropDownList(ModelsUtil::advertiser_status) ?>
-    <?= $form->field($model, 'pricing_mode')->dropDownList(
-        PriceModel::find()
-            ->select(['name','value'])
-            ->orderBy('id')
-            ->indexBy('value')
-            ->column()
-    ) ?>
-    <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'skype')->textInput() ?>
-    <?= $form->field($model, 'phone1')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'timezone')->dropDownList(ModelsUtil::timezone) ?>
-    <?= $form->field($model, 'note')->textarea(['maxlength' => true]) ?>
+
+
+    <?= $form->field($model, 'company')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

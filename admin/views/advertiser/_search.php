@@ -53,9 +53,9 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'password_reset_token') ?>
 
-    <?php // echo $form->field($model, 'created_time') ?>
+    <?php // echo $form->field($model, 'create_time') ?>
 
-    <?php // echo $form->field($model, 'updated_time') ?>
+    <?php // echo $form->field($model, 'update_time') ?>
 
     <?php // echo $form->field($model, 'post_parameter') ?>
 
@@ -102,6 +102,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'ip_whitelist') ?>
 
     <?php // echo $form->field($model, 'note') ?>
+
+    <?php // echo $form->field($model, 'profile_complete') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

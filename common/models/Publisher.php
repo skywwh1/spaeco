@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use mootensai\relation\RelationTrait;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
@@ -67,14 +68,19 @@ use yii\web\IdentityInterface;
  * @property string $strong_category
  * @property integer $recommended
  * @property integer $os
+ * @property integer $profile_complete
  *
+ * @property PubEducation[] $pubEducations
+ * @property PubExperience[] $pubExperiences
  * @property Publisher $masterPublisher
  * @property Publisher[] $publishers
  * @property User $om0
  */
 class Publisher extends ActiveRecord implements IdentityInterface
 {
+    use RelationTrait;
     const STATUS_ACTIVE = 1;
+    public $password;
 
     /**
      * @inheritdoc
@@ -90,8 +96,8 @@ class Publisher extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'email'], 'required'],
-            [['type', 'pm', 'om', 'master_publisher', 'payment_term', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'status', 'total_revenue', 'payable', 'recommended', 'os'], 'integer'],
+            [['username', 'email', 'firstname', 'company', 'address'], 'required'],
+            [['type', 'pm', 'om', 'master_publisher', 'payment_term', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'status', 'total_revenue', 'payable', 'recommended', 'os', 'profile_complete'], 'integer'],
             [['cc_email', 'note'], 'string'],
             [['username', 'firstname', 'lastname', 'payment_way', 'beneficiary_name', 'system', 'contacts', 'alipay', 'timezone', 'traffic_source', 'pricing_mode'], 'string', 'max' => 100],
             [['auth_token', 'auth_key'], 'string', 'max' => 32],
@@ -107,6 +113,7 @@ class Publisher extends ActiveRecord implements IdentityInterface
             [['auth_token'], 'unique'],
             [['master_publisher'], 'exist', 'skipOnError' => true, 'targetClass' => Publisher::className(), 'targetAttribute' => ['master_publisher' => 'id']],
             [['om'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['om' => 'id']],
+            ['password', 'safe'],
         ];
     }
 
@@ -173,7 +180,24 @@ class Publisher extends ActiveRecord implements IdentityInterface
             'strong_category' => 'Strong Category',
             'recommended' => 'Recommended',
             'os' => 'Os',
+            'profile_complete' => 'Profile Complete',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPubEducations()
+    {
+        return $this->hasMany(PubEducation::className(), ['pub_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPubExperiences()
+    {
+        return $this->hasMany(PubExperience::className(), ['pub_id' => 'id']);
     }
 
     /**

@@ -40,7 +40,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'daily_cap')->textInput() ?>
 
+    <?= $form->field($model, 'bid')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'daily_budget')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'total_budget')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'adv_price')->textInput(['maxlength' => true]) ?>
 

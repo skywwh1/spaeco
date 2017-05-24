@@ -45,6 +45,21 @@ class PublisherController extends Controller
     }
 
     /**
+     * Lists all Publisher models.
+     * @return mixed
+     */
+    public function actionCertificateIndex()
+    {
+        $searchModel = new PublisherSearch();
+        $dataProvider = $searchModel->certificateSearch(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Displays a single Publisher model.
      * @param integer $id
      * @return mixed
@@ -67,7 +82,7 @@ class PublisherController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $this->beforeSave($model);
-            if ($model->save()){
+            if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -127,9 +142,15 @@ class PublisherController extends Controller
         }
     }
 
+    /**
+     * @param Publisher $model
+     */
     private function beforeSave(&$model)
     {
-
+        if (!empty($model->password)) {
+            $model->setPassword($model->password);
+            $model->generateAuthKey();
+        }
     }
 
     private function beforeUpdate(&$model)

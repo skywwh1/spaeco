@@ -22,7 +22,9 @@ use Yii;
  * @property string $min_version
  * @property string $max_version
  * @property integer $daily_cap
+ * @property string $bid
  * @property string $daily_budget
+ * @property string $total_budget
  * @property string $adv_price
  * @property string $now_payout
  * @property string $target_geo
@@ -60,6 +62,7 @@ use Yii;
  * @property integer $link_type
  * @property string $other_setting
  * @property string $ip_blacklist
+ * @property string  $publisher
  * @property integer $creator
  * @property integer $create_time
  * @property integer $update_time
@@ -83,12 +86,12 @@ class Campaign extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['advertiser', 'campaign_name', 'now_payout', 'adv_link', 'creator', 'create_time', 'update_time'], 'required'],
+            [['advertiser', 'campaign_name', 'adv_link',], 'required'],
             [['advertiser', 'promote_start', 'promote_end', 'effective_time', 'adv_update_time', 'daily_cap', 'recommended', 'indirect', 'tag', 'direct', 'status', 'open_type', 'subid_status', 'third_party', 'link_type', 'creator', 'create_time', 'update_time'], 'integer'],
-            [['adv_price', 'now_payout', 'avg_price'], 'number'],
+            [['bid', 'daily_budget', 'total_budget', 'adv_price', 'now_payout', 'avg_price'], 'number'],
             [['kpi', 'note', 'others', 'description'], 'string'],
-            [['campaign_name', 'target_geo', 'preview_link', 'icon', 'category', 'creative_link', 'creative_type', 'creative_description', 'track_way', 'track_link_domain', 'adv_link', 'other_setting', 'ip_blacklist'], 'string', 'max' => 255],
-            [['campaign_uuid', 'pricing_mode', 'payout_currency', 'device', 'platform', 'min_version', 'max_version', 'daily_budget', 'traffic_source', 'package_name', 'app_name', 'app_size', 'version', 'app_rate', 'carriers', 'conversion_flow', 'epc'], 'string', 'max' => 100],
+            [['campaign_name', 'target_geo', 'preview_link', 'icon', 'category', 'creative_link', 'creative_type', 'creative_description', 'track_way', 'track_link_domain', 'adv_link', 'other_setting', 'ip_blacklist', 'publisher'], 'string', 'max' => 255],
+            [['campaign_uuid', 'pricing_mode', 'payout_currency', 'device', 'platform', 'min_version', 'max_version', 'traffic_source', 'package_name', 'app_name', 'app_size', 'version', 'app_rate', 'carriers', 'conversion_flow', 'epc'], 'string', 'max' => 100],
             [['campaign_uuid'], 'unique'],
             [['advertiser'], 'exist', 'skipOnError' => true, 'targetClass' => Advertiser::className(), 'targetAttribute' => ['advertiser' => 'id']],
             [['creator'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['creator' => 'id']],
@@ -116,7 +119,9 @@ class Campaign extends \yii\db\ActiveRecord
             'min_version' => 'Min Version',
             'max_version' => 'Max Version',
             'daily_cap' => 'Daily Cap',
+            'bid' => 'Bid',
             'daily_budget' => 'Daily Budget',
+            'total_budget' => 'Total Budget',
             'adv_price' => 'Adv Price',
             'now_payout' => 'Now Payout',
             'target_geo' => 'Target Geo',
@@ -154,6 +159,7 @@ class Campaign extends \yii\db\ActiveRecord
             'link_type' => 'Link Type',
             'other_setting' => 'Other Setting',
             'ip_blacklist' => 'Ip Blacklist',
+            'publisher' => 'Publisher',
             'creator' => 'Creator',
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',

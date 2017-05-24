@@ -17,9 +17,12 @@ if (!YII_ENV_TEST) {
     ];
 
     $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-    ];
+//    $config['modules']['gii'] = [
+//        'class' => 'yii\gii\Module',
+//    ];
+    $config['modules']['gii'] = array('class'=>'yii\gii\Module',
+        'allowedIPs' => ['127.0.0.1', '::1', '192.168.*.*', '192.168.56.10'],
+    );
 }
 
 return $config;

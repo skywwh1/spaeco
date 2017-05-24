@@ -44,7 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p>
                             <?= Html::a('Home', '@frontendUrl') ?><br>
                             <?= Html::a('Login', ['/site/login']) ?><br>
-                            <?= Html::a('Forget password', ['/site/forget']) ?><br>
                         </p>
                     </div>
                     <!-- /.col -->

@@ -159,15 +159,22 @@ AppAsset::register($this);
                         <li>
                             <a href="/publisher/index" data-menu="publisher-index">
                                 <i class="fa fa-circle-o"></i>
-                                Publisher List
+                                Register List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/publisher/certificate-index" data-menu="publisher-certificate-index">
+                                <i class="fa fa-circle-o"></i>
+                                Certificate List
                             </a>
                         </li>
                         <li>
                             <a href="/publisher/create" data-menu="publisher-create">
                                 <i class="fa fa-circle-o"></i>
-                                Publisher Create
+                                Create
                             </a>
                         </li>
+
                         <!--                        <li>-->
                         <!--                            <a href="pages/examples/profile.html">-->
                         <!--                                <i class="fa fa-circle-o"></i>-->
@@ -194,7 +201,13 @@ AppAsset::register($this);
                         <li>
                             <a href="/advertiser/index" data-menu="advertiser-index">
                                 <i class="fa fa-circle-o text-aqua"></i>
-                                Advertiser List
+                                Regitser List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/advertiser/certificate-index" data-menu="advertiser-certificate-index">
+                                <i class="fa fa-circle-o text-aqua"></i>
+                                Certificate List
                             </a>
                         </li>
                         <li>

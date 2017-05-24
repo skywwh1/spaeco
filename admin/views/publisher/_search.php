@@ -61,9 +61,9 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'contacts') ?>
 
-    <?php // echo $form->field($model, 'created_time') ?>
+    <?php // echo $form->field($model, 'create_time') ?>
 
-    <?php // echo $form->field($model, 'updated_time') ?>
+    <?php // echo $form->field($model, 'update_time') ?>
 
     <?php // echo $form->field($model, 'email') ?>
 
@@ -128,6 +128,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'recommended') ?>
 
     <?php // echo $form->field($model, 'os') ?>
+
+    <?php // echo $form->field($model, 'profile_complete') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

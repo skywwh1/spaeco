@@ -3,8 +3,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use frontend\assets\SbAppAsset;
-use publisher\assets\AppAsset;
+use advertiser\assets\AppAsset;
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
 AppAsset::register($this);
@@ -39,7 +39,7 @@ AppAsset::register($this);
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Welcome <?= Yii::$app->user->identity->username?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    Welcome <?= Yii::$app->user->identity->username ?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <!--                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -76,52 +76,52 @@ AppAsset::register($this);
                         <a href="/site/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-files-o fa-fw"></i> Offers<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-files-o fa-fw"></i> Campaigns<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <?= Html::a('All Offers', ['camp-log/alloffers'],['data-menu'=>"alloffers"]) ?>
+                                <?= Html::a('My Campaigns', ['campaign/index'], ['data-menu' => "campaign-index"]) ?>
                             </li>
 
                             <li>
-                                <?= Html::a('My Approved Offers', ['camp-log/myoffers'],['data-menu'=>"myoffers"]) ?>
+                                <?= Html::a('Create Campaign', ['campaign/create'], ['data-menu' => "campaign-create"]) ?>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reports<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <?php //  Html::a('Hourly Report', ['my-report/hourly'],['data-menu'=>"hourly"]) ?>
-                            </li>
-                            <li>
-                                <?php //  Html::a('Daily Report', ['my-report/daily'],['data-menu'=>"daily"]) ?>
-                            </li>
-                            <li>
-                                <?=  Html::a('Offers Report', ['my-report/offers'],['data-menu'=>"offers"]) ?>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Support<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/support/api" data-menu="channel-api">API</a>
-                            </li>
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
+                    <!--                    <li>-->
+                    <!--                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reports<span class="fa arrow"></span></a>-->
+                    <!--                        <ul class="nav nav-second-level">-->
+                    <!--                            <li>-->
+                    <!--                            </li>-->
+                    <!--                            <li>-->
+                    <!--                            </li>-->
+                    <!--                            <li>-->
+                    <!--                            </li>-->
+                    <!--                        </ul>-->
+                    <!--                    </li>-->
 
                     <li>
                         <a href="#"><i class="fa fa-user fa-fw"></i> Account<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/account/payment" data-menu="channel-payment">Payment</a>
+                                <a href="/account/payment" data-menu="channel-payment">Wallet</a>
                             </li>
                             <li>
-                                <a href="#">Setting</a>
+                                <a href="/account/payment" data-menu="channel-payment">Transactions</a>
+                            </li>
+                            <li>
+                                <a href="/profile/view?id=<?= Yii::$app->user->id ?>" data-menu="profile-index">My Profile</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Help Center<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/support/api" data-menu="channel-api">API</a>
                             </li>
 
                         </ul>
@@ -144,5 +144,17 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 </body>
+<?php
+Modal::begin([
+    'id' => 'index-crud-modal',
+    'size' => 'modal-lg',
+    'clientOptions' => [
+        'backdrop' => 'static',
+        'keyboard' => false,
+    ],
+]);
+echo '<div id="crud-detail-content"></div>';
+Modal::end();
+?>
 </html>
 <?php $this->endPage() ?>

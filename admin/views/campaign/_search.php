@@ -45,7 +45,11 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'daily_cap') ?>
 
+    <?php // echo $form->field($model, 'bid') ?>
+
     <?php // echo $form->field($model, 'daily_budget') ?>
+
+    <?php // echo $form->field($model, 'total_budget') ?>
 
     <?php // echo $form->field($model, 'adv_price') ?>
 

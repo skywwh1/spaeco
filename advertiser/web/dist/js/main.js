@@ -19,3 +19,16 @@ $(function () {
 $(document).ready(function () {
     $('.dropdown-toggle').dropdown();
 });
+
+$(document).on("click", "a[data-name=crud-button]", function (e) {
+    if ("undefined" !== $(this).attr('data-size')) {
+        $('#index-crud-modal .modal-dialog').addClass($(this).attr('data-size'));
+    }
+    $('#index-crud-modal .modal-header').append('<h4 class="modal-title">' + $(this).attr('data-title') + '</h4>');
+    $('#index-crud-modal').modal('show').find('#crud-detail-content').load($(this).attr('data-url'));
+});
+
+$(document).on('hidden.bs.modal', '#index-crud-modal', function () {
+    $('#crud-detail-content').empty();
+    $('#index-crud-modal .modal-header h4').remove();
+});

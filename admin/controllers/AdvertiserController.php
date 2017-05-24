@@ -46,6 +46,21 @@ class AdvertiserController extends Controller
     }
 
     /**
+     * Lists all Advertiser models.
+     * @return mixed
+     */
+    public function actionCertificateIndex()
+    {
+        $searchModel = new AdvertiserSearch();
+        $dataProvider = $searchModel->certificateSearch(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Displays a single Advertiser model.
      * @param integer $id
      * @return mixed
@@ -141,8 +156,11 @@ class AdvertiserController extends Controller
      */
     private function beforeSave(&$model)
     {
-
         $model->bd = User::findOne(['username' => $model->bd])->id;
+        if (!empty($model->password)) {
+            $model->setPassword($model->password);
+            $model->generateAuthKey();
+        }
     }
 
     private function beforeUpdate(&$model)

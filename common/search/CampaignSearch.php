@@ -19,8 +19,8 @@ class CampaignSearch extends Campaign
     {
         return [
             [['id', 'advertiser', 'promote_start', 'promote_end', 'effective_time', 'adv_update_time', 'daily_cap', 'recommended', 'indirect', 'tag', 'direct', 'status', 'open_type', 'subid_status', 'third_party', 'link_type', 'creator', 'create_time', 'update_time'], 'integer'],
-            [['campaign_name', 'campaign_uuid', 'pricing_mode', 'payout_currency', 'device', 'platform', 'min_version', 'max_version', 'daily_budget', 'target_geo', 'traffic_source', 'kpi', 'note', 'others', 'preview_link', 'icon', 'package_name', 'app_name', 'app_size', 'category', 'version', 'app_rate', 'description', 'creative_link', 'creative_type', 'creative_description', 'carriers', 'conversion_flow', 'epc', 'track_way', 'track_link_domain', 'adv_link', 'other_setting', 'ip_blacklist'], 'safe'],
-            [['adv_price', 'now_payout', 'avg_price'], 'number'],
+            [['campaign_name', 'campaign_uuid', 'pricing_mode', 'payout_currency', 'device', 'platform', 'min_version', 'max_version', 'target_geo', 'traffic_source', 'kpi', 'note', 'others', 'preview_link', 'icon', 'package_name', 'app_name', 'app_size', 'category', 'version', 'app_rate', 'description', 'creative_link', 'creative_type', 'creative_description', 'carriers', 'conversion_flow', 'epc', 'track_way', 'track_link_domain', 'adv_link', 'other_setting', 'ip_blacklist'], 'safe'],
+            [['bid', 'daily_budget', 'total_budget', 'adv_price', 'now_payout', 'avg_price'], 'number'],
         ];
     }
 
@@ -67,6 +67,9 @@ class CampaignSearch extends Campaign
             'effective_time' => $this->effective_time,
             'adv_update_time' => $this->adv_update_time,
             'daily_cap' => $this->daily_cap,
+            'bid' => $this->bid,
+            'daily_budget' => $this->daily_budget,
+            'total_budget' => $this->total_budget,
             'adv_price' => $this->adv_price,
             'now_payout' => $this->now_payout,
             'recommended' => $this->recommended,
@@ -92,7 +95,6 @@ class CampaignSearch extends Campaign
             ->andFilterWhere(['like', 'platform', $this->platform])
             ->andFilterWhere(['like', 'min_version', $this->min_version])
             ->andFilterWhere(['like', 'max_version', $this->max_version])
-            ->andFilterWhere(['like', 'daily_budget', $this->daily_budget])
             ->andFilterWhere(['like', 'target_geo', $this->target_geo])
             ->andFilterWhere(['like', 'traffic_source', $this->traffic_source])
             ->andFilterWhere(['like', 'kpi', $this->kpi])

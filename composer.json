@@ -32,7 +32,8 @@
         "kartik-v/yii2-export": "*",
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-widget-fileinput": "@dev",
-	"wbraganca/yii2-dynamicform": "dev-master"
+	    "wbraganca/yii2-dynamicform": "dev-master",
+        "mootensai/yii2-relation-trait": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

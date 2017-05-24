@@ -32,22 +32,17 @@ AppAsset::register($this);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Superad ECO Publisher</a>
+            <a class="navbar-brand" href="#">SuperADS Channel Admin</a>
         </div>
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Welcome <?= Yii::$app->user->identity->username?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    Welcome <?= Yii::$app->user->identity->username ?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <!--                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                                        </li>
-                                        <li class="divider"></li>
-                    -->
+
                     <li>
                         <?php
                         echo Html::beginForm(['/site/logout'], 'post', ['id' => 'logout-form']);
@@ -73,7 +68,7 @@ AppAsset::register($this);
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="/site/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="../camp-log/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-files-o fa-fw"></i> Offers<span class="fa arrow"></span></a>
@@ -121,7 +116,7 @@ AppAsset::register($this);
                                 <a href="/account/payment" data-menu="channel-payment">Payment</a>
                             </li>
                             <li>
-                                <a href="#">Setting</a>
+                                <a href="/profile/view?id=<?= Yii::$app->user->id ?>" data-menu="profile-index">My Profile</a>
                             </li>
 
                         </ul>
