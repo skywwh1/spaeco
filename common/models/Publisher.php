@@ -69,6 +69,8 @@ use yii\web\IdentityInterface;
  * @property integer $recommended
  * @property integer $os
  * @property integer $profile_complete
+ * @property integer $approved
+ * @property string $name_card_path
  *
  * @property PubEducation[] $pubEducations
  * @property PubExperience[] $pubExperiences
@@ -97,11 +99,11 @@ class Publisher extends ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'email', 'firstname', 'company', 'address'], 'required'],
-            [['type', 'pm', 'om', 'master_publisher', 'payment_term', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'status', 'total_revenue', 'payable', 'recommended', 'os', 'profile_complete'], 'integer'],
+            [['type', 'pm', 'om', 'master_publisher', 'payment_term', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'status', 'total_revenue', 'payable', 'recommended', 'os', 'profile_complete', 'approved'], 'integer'],
             [['cc_email', 'note'], 'string'],
             [['username', 'firstname', 'lastname', 'payment_way', 'beneficiary_name', 'system', 'contacts', 'alipay', 'timezone', 'traffic_source', 'pricing_mode'], 'string', 'max' => 100],
             [['auth_token', 'auth_key'], 'string', 'max' => 32],
-            [['password_hash', 'password_reset_token', 'bank_country', 'bank_name', 'bank_address', 'swift', 'account_nu_iban', 'company_address', 'company', 'address', 'post_back', 'paid', 'strong_geo', 'strong_category'], 'string', 'max' => 255],
+            [['password_hash', 'password_reset_token', 'bank_country', 'bank_name', 'bank_address', 'swift', 'account_nu_iban', 'company_address', 'company', 'address', 'post_back', 'paid', 'strong_geo', 'strong_category', 'name_card_path'], 'string', 'max' => 255],
             [['email', 'wechat', 'skype'], 'string', 'max' => 50],
             [['country'], 'string', 'max' => 10],
             [['city'], 'string', 'max' => 120],
@@ -181,6 +183,8 @@ class Publisher extends ActiveRecord implements IdentityInterface
             'recommended' => 'Recommended',
             'os' => 'Os',
             'profile_complete' => 'Profile Complete',
+            'approved' => 'Approved',
+            'name_card_path' => 'Name Card Path',
         ];
     }
 
@@ -361,5 +365,19 @@ class Publisher extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function setProfileComplete()
+    {
+        $a = $this->pubExperiences;
+        $b = $this->pubEducations;
+        $c = $this->name_card_path;
+
+        if (!empty($a) || !empty($b) || !empty($c)) {
+            $this->profile_complete = 60;
+        }
+        if (!empty($a) && !empty($b) && !empty($c)) {
+            $this->profile_complete = 100;
+        }
     }
 }

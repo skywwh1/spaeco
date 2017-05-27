@@ -4,12 +4,16 @@ namespace advertiser\controllers;
 
 use common\models\AdvEducation;
 use common\models\AdvExperience;
+use common\models\UploadForm;
+use Imagine\Image\Box;
+use Imagine\Image\ImageInterface;
 use Yii;
 use common\models\Advertiser;
 use advertiser\search\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProfileController implements the CRUD actions for Advertiser model.
@@ -118,7 +122,8 @@ class ProfileController extends Controller
 
         if ($model->loadAll(Yii::$app->request->post())) {
             $this->beforeSave($model);
-            if ($model->saveAll()) {
+            if ($model->save()) {
+                $this->updateExperience($model);
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -141,7 +146,8 @@ class ProfileController extends Controller
 
         if ($model->loadAll(Yii::$app->request->post())) {
             $this->beforeSave($model);
-            if ($model->saveAll()) {
+            if ($model->save()) {
+                $this->updateEducation($model);
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -151,18 +157,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Advertiser model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
 
     /**
      * Finds the Advertiser model based on its primary key value.
@@ -180,9 +174,11 @@ class ProfileController extends Controller
         }
     }
 
+    /**
+     * @param Advertiser $model
+     */
     private function beforeSave(&$model)
     {
-
     }
 
     private function beforeUpdate(&$model)
@@ -190,4 +186,86 @@ class ProfileController extends Controller
 
     }
 
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstancesByName('imageFile')[0];
+            $path = $model->singleUpload();
+
+            if ($path) {
+                $adv = Advertiser::findIdentity(Yii::$app->user->id);
+                $newPath = Yii::getAlias('@files') . '/adv_name_card_' . $adv->id . '.jpg';
+                $imagine = new \Imagine\Imagick\Imagine();
+                $imagine->open($path)->save($newPath);
+                $adv->name_card_path = $newPath;
+                $adv->setProfileComplete();
+                $adv->save();
+                return $this->redirect(Yii::$app->request->referrer);
+            } else {
+                var_dump($model->getErrors());
+            }
+        }
+    }
+
+    /**
+     * @param Advertiser $model
+     */
+    private function updateExperience($model)
+    {
+        $new = $model->advExperiences;
+        $old = $model->getAdvExperiences()->all();
+        if (!empty($old) && !empty($old)) {
+            foreach ($old as $itemOld) {
+                $exist = false;
+                foreach ($new as $itemNew) {
+                    if (!($itemNew->isNewRecord) && ($itemNew->id == $itemOld->id)) {
+                        $exist = true;
+                    }
+                }
+                if (!$exist) {
+                    $itemOld->delete();
+                }
+            }
+        }
+        if (empty($new)) {
+            AdvExperience::deleteAll(['adv_id' => $model->id]);
+        } else {
+            foreach ($new as $itemNew) {
+                $itemNew->adv_id = $model->id;
+                $itemNew->save();
+            }
+        }
+    }
+
+    /**
+     * @param Advertiser $model
+     */
+    private function updateEducation($model)
+    {
+        $new = $model->advEducations;
+        $old = $model->getAdvEducations()->all();
+        if (!empty($old) && !empty($old)) {
+            foreach ($old as $itemOld) {
+                $exist = false;
+                foreach ($new as $itemNew) {
+                    if (!($itemNew->isNewRecord) && ($itemNew->id == $itemOld->id)) {
+                        $exist = true;
+                    }
+                }
+                if (!$exist) {
+                    $itemOld->delete();
+                }
+            }
+        }
+        if (empty($new)) {
+            AdvEducation::deleteAll(['adv_id' => $model->id]);
+        } else {
+            foreach ($new as $itemNew) {
+                $itemNew->adv_id = $model->id;
+                $itemNew->save();
+            }
+        }
+    }
 }

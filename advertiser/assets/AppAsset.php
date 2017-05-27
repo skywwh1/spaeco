@@ -20,8 +20,7 @@ class AppAsset extends AssetBundle
         'vendor/font-awesome/css/font-awesome.min.css',
     ];
     public $js = [
-//        'vendor/jquery/jquery.min.js',
-        'vendor/bootstrap/js/bootstrap.min.js',
+        'vendor/bootstrap/js/bootstrap.min.js', // 这个必须要放第一个。
         'vendor/metisMenu/metisMenu.min.js',
         'vendor/raphael/raphael.min.js',
 //        'vendor/morrisjs/morris.min.js',

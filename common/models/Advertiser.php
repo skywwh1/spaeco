@@ -56,6 +56,8 @@ use yii\web\IdentityInterface;
  * @property string $ip_whitelist
  * @property string $note
  * @property integer $profile_complete
+ * @property integer $approved
+ * @property string $name_card_path
  *
  * @property AdvEducation[] $advEducations
  * @property AdvExperience[] $advExperiences
@@ -83,11 +85,11 @@ class Advertiser extends ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'email'], 'required'],
-            [['payment_term', 'pm', 'status', 'type', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'profile_complete'], 'integer'],
+            [['payment_term', 'pm', 'status', 'type', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'profile_complete', 'approved'], 'integer'],
             [['total_revenue', 'receivable', 'received'], 'number'],
             [['note'], 'string'],
             [['username', 'firstname', 'lastname', 'system', 'pricing_mode', 'alipay', 'timezone'], 'string', 'max' => 100],
-            [['contacts', 'password_hash', 'password_reset_token', 'post_parameter', 'company', 'address', 'ip_whitelist'], 'string', 'max' => 255],
+            [['contacts', 'password_hash', 'password_reset_token', 'post_parameter', 'company', 'address', 'ip_whitelist', 'name_card_path'], 'string', 'max' => 255],
             [['auth_token', 'auth_key'], 'string', 'max' => 32],
             [['email', 'cc_email', 'weixin', 'skype'], 'string', 'max' => 50],
             [['country'], 'string', 'max' => 10],
@@ -153,6 +155,9 @@ class Advertiser extends ActiveRecord implements IdentityInterface
             'suspended' => 'Suspended',
             'deleted' => 'Deleted',
             'note' => 'Note',
+            'profile_complete' => 'Profile Complete',
+            'approved' => 'Approved',
+            'name_card_path' => 'Name Card Path',
         ];
     }
 
@@ -319,4 +324,18 @@ class Advertiser extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
+    public function setProfileComplete()
+    {
+        $a = $this->advExperiences;
+        $b = $this->advEducations;
+        $c = $this->name_card_path;
+
+        if (!empty($a) || !empty($b) || !empty($c)) {
+            $this->profile_complete = 60;
+        }
+        if (!empty($a) && !empty($b) && !empty($c)) {
+            $this->profile_complete = 100;
+        }
+
+    }
 }

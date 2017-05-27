@@ -4,12 +4,14 @@ namespace publisher\controllers;
 
 use common\models\PubEducation;
 use common\models\PubExperience;
+use common\models\UploadForm;
 use Yii;
 use common\models\Publisher;
 use publisher\search\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProfileController implements the CRUD actions for Publisher model.
@@ -113,7 +115,8 @@ class ProfileController extends Controller
 
         if ($model->loadAll(Yii::$app->request->post())) {
             $this->beforeSave($model);
-            if ($model->saveAll()) {
+            if ($model->save()) {
+                $this->updateExperience($model);
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -136,7 +139,8 @@ class ProfileController extends Controller
 
         if ($model->loadAll(Yii::$app->request->post())) {
             $this->beforeSave($model);
-            if ($model->saveAll()) {
+            if ($model->save()) {
+                $this->updateEducation($model);
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -170,5 +174,88 @@ class ProfileController extends Controller
     private function beforeUpdate(&$model)
     {
 
+    }
+
+    /**
+     * @param Publisher $model
+     */
+    private function updateExperience($model)
+    {
+        $new = $model->pubExperiences;
+        $old = $model->getPubExperiences()->all();
+        if (!empty($old) && !empty($old)) {
+            foreach ($old as $itemOld) {
+                $exist = false;
+                foreach ($new as $itemNew) {
+                    if (!($itemNew->isNewRecord) && ($itemNew->id == $itemOld->id)) {
+                        $exist = true;
+                    }
+                }
+                if (!$exist) {
+                    $itemOld->delete();
+                }
+            }
+        }
+        if (empty($new)) {
+            PubExperience::deleteAll(['pub_id' => $model->id]);
+        } else {
+            foreach ($new as $itemNew) {
+                $itemNew->pub_id = $model->id;
+                $itemNew->save();
+            }
+        }
+    }
+
+    /**
+     * @param Publisher $model
+     */
+    private function updateEducation($model)
+    {
+        $new = $model->pubEducations;
+        $old = $model->getPubEducations()->all();
+        if (!empty($old) && !empty($old)) {
+            foreach ($old as $itemOld) {
+                $exist = false;
+                foreach ($new as $itemNew) {
+                    if (!($itemNew->isNewRecord) && ($itemNew->id == $itemOld->id)) {
+                        $exist = true;
+                    }
+                }
+                if (!$exist) {
+                    $itemOld->delete();
+                }
+            }
+        }
+        if (empty($new)) {
+            PubEducation::deleteAll(['pub_id' => $model->id]);
+        } else {
+            foreach ($new as $itemNew) {
+                $itemNew->pub_id = $model->id;
+                $itemNew->save();
+            }
+        }
+    }
+
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstancesByName('imageFile')[0];
+            $path = $model->singleUpload();
+
+            if ($path) {
+                $pub = Publisher::findIdentity(Yii::$app->user->id);
+                $newPath = Yii::getAlias('@files') . '/pub_name_card_' . $pub->id . '.jpg';
+                $imagine = new \Imagine\Imagick\Imagine();
+                $imagine->open($path)->save($newPath);
+                $pub->name_card_path = $newPath;
+                $pub->setProfileComplete();
+                $pub->save();
+                return $this->redirect(Yii::$app->request->referrer);
+            } else {
+                var_dump($model->getErrors());
+            }
+        }
     }
 }

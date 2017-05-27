@@ -71,4 +71,12 @@ class PubExperience extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Publisher::className(), ['id' => 'pub_id']);
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        $adv = $this->pub;
+        $adv->setProfileComplete();
+        $adv->save();
+    }
 }

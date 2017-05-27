@@ -6,8 +6,9 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel common\search\PublisherSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $title string */
 
-$this->title = 'Publishers';
+$this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="nav-menu" data-menu="publisher-index"></div>

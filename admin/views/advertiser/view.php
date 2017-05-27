@@ -75,12 +75,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'attribute' => 'created_time',
+                'attribute' => 'create_time',
                 'format' => ['date', 'php:Y-m-d H:i:s']
             ],
             //'updated_time:datetime',
             [
-                'attribute' => 'updated_time',
+                'attribute' => 'update_time',
                 'format' => ['date', 'php:Y-m-d H:i:s']
             ],
         ],

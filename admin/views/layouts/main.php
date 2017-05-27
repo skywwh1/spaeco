@@ -163,6 +163,13 @@ AppAsset::register($this);
                             </a>
                         </li>
                         <li>
+                            <a href="/publisher/certifying" data-menu="publisher-certifying-index">
+                                <i class="fa fa-circle-o"></i>
+                                Certifying List
+                            </a>
+                        </li>
+
+                        <li>
                             <a href="/publisher/certificate-index" data-menu="publisher-certificate-index">
                                 <i class="fa fa-circle-o"></i>
                                 Certificate List
@@ -200,19 +207,26 @@ AppAsset::register($this);
                     <ul class="treeview-menu">
                         <li>
                             <a href="/advertiser/index" data-menu="advertiser-index">
-                                <i class="fa fa-circle-o text-aqua"></i>
+                                <i class="fa fa-circle-o"></i>
                                 Regitser List
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/advertiser/certifying" data-menu="advertiser-certifying-index">
+                                <i class="fa fa-circle-o text-aqua"></i>
+                                Certifying List
                             </a>
                         </li>
                         <li>
                             <a href="/advertiser/certificate-index" data-menu="advertiser-certificate-index">
-                                <i class="fa fa-circle-o text-aqua"></i>
-                                Certificate List
+                                <i class="fa fa-circle-o"></i>
+                                Certificated List
                             </a>
                         </li>
                         <li>
                             <a href="/advertiser/create" data-menu="advertiser-create">
-                                <i class="fa fa-circle-o text-aqua"></i>
+                                <i class="fa fa-circle-o"></i>
                                 Create ADV
                             </a>
                         </li>
@@ -246,7 +260,7 @@ AppAsset::register($this);
                     <ul class="treeview-menu">
                         <li>
                             <a href="pages/examples/invoice.html">
-                                <i class="fa fa-circle text-aqua"></i>
+                                <i class="fa fa-circle"></i>
                                 STS
                             </a>
                         </li>

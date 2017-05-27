@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "50b8f76a07b68bd41f301ef7fe9d62a6",
+    "content-hash": "d7351da148439711c5a62d2dfad1318c",
     "packages": [
         {
             "name": "bizley/ajaxdropdown",
@@ -412,6 +412,63 @@
             "time": "2017-03-13T06:30:53+00:00"
         },
         {
+            "name": "imagine/imagine",
+            "version": "v0.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/avalanche123/Imagine.git",
+                "reference": "149041d2a1b517107bfe270ca2b1a17aa341715d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/avalanche123/Imagine/149041d2a1b517107bfe270ca2b1a17aa341715d.zip",
+                "reference": "149041d2a1b517107bfe270ca2b1a17aa341715d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "sami/sami": "dev-master"
+            },
+            "suggest": {
+                "ext-gd": "to use the GD implementation",
+                "ext-gmagick": "to use the Gmagick implementation",
+                "ext-imagick": "to use the Imagick implementation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Imagine": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com",
+                    "homepage": "http://avalanche123.com"
+                }
+            ],
+            "description": "Image processing for PHP 5.3",
+            "homepage": "http://imagine.readthedocs.org/",
+            "keywords": [
+                "drawing",
+                "graphics",
+                "image manipulation",
+                "image processing"
+            ],
+            "time": "2015-09-19T16:54:05+00:00"
+        },
+        {
             "name": "kartik-v/bootstrap-checkbox-x",
             "version": "v1.5.4",
             "source": {
@@ -465,7 +522,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/4aec9b00de25b4b3cca1f11ffbaa823c67c33590",
+                "url": "https://files.phpcomposer.com/files/kartik-v/bootstrap-fileinput/4aec9b00de25b4b3cca1f11ffbaa823c67c33590.zip",
                 "reference": "4aec9b00de25b4b3cca1f11ffbaa823c67c33590",
                 "shasum": ""
             },
@@ -1404,6 +1461,56 @@
             "time": "2017-04-06T09:12:28+00:00"
         },
         {
+            "name": "mootensai/yii2-relation-trait",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mootensai/yii2-relation-trait.git",
+                "reference": "392501940f601113283ea6341f26cd8ea7f66249"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mootensai/yii2-relation-trait/zipball/392501940f601113283ea6341f26cd8ea7f66249",
+                "reference": "392501940f601113283ea6341f26cd8ea7f66249",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "mootensai\\relation\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Yohanes Candrajaya",
+                    "email": "moo.tensai@gmail.com"
+                }
+            ],
+            "description": "Yii 2 Models load with relation, & transaction save with relation",
+            "homepage": "http://github.com/mootensai/yii2-relation-trait",
+            "keywords": [
+                "load",
+                "loadall",
+                "loadwithrelation",
+                "related",
+                "relation",
+                "save",
+                "saveall",
+                "savewithrelation",
+                "transaction",
+                "yii2"
+            ],
+            "time": "2017-03-30 07:49:50"
+        },
+        {
             "name": "mpdf/mpdf",
             "version": "v6.1.3",
             "source": {
@@ -2077,6 +2184,54 @@
             "time": "2016-12-20T13:26:02+00:00"
         },
         {
+            "name": "yiisoft/yii2-imagine",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-imagine.git",
+                "reference": "59dcd0b43c2b0e5495c7e5c0320e2cbc1cd57411"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-imagine/59dcd0b43c2b0e5495c7e5c0320e2cbc1cd57411.zip",
+                "reference": "59dcd0b43c2b0e5495c7e5c0320e2cbc1cd57411",
+                "shasum": ""
+            },
+            "require": {
+                "imagine/imagine": "~0.6.0",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\imagine\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "amigo.cobos@gmail.com"
+                }
+            ],
+            "description": "The Imagine integration for the Yii framework",
+            "keywords": [
+                "helper",
+                "image",
+                "imagine",
+                "yii2"
+            ],
+            "time": "2016-11-03T19:28:39+00:00"
+        },
+        {
             "name": "yiisoft/yii2-swiftmailer",
             "version": "2.0.7",
             "source": {
@@ -2224,7 +2379,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/base/zipball/eea7d29115390772363a4f7744396927b33bf4f3",
+                "url": "https://files.phpcomposer.com/files/Codeception/base/eea7d29115390772363a4f7744396927b33bf4f3.zip",
                 "reference": "eea7d29115390772363a4f7744396927b33bf4f3",
                 "shasum": ""
             },
@@ -3057,7 +3212,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/69c4f49ff376af2692bad9cebd883d17ebaa98a1",
+                "url": "https://files.phpcomposer.com/files/sebastianbergmann/phpunit/69c4f49ff376af2692bad9cebd883d17ebaa98a1.zip",
                 "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1",
                 "shasum": ""
             },
@@ -3404,7 +3559,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/13edfd8706462032c2f52b4b862974dd46b71c9e",
+                "url": "https://files.phpcomposer.com/files/sebastianbergmann/diff/13edfd8706462032c2f52b4b862974dd46b71c9e.zip",
                 "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e",
                 "shasum": ""
             },
@@ -4391,7 +4546,8 @@
         "kartik-v/yii2-widget-select2": 20,
         "kartik-v/yii2-grid": 20,
         "kartik-v/yii2-widget-fileinput": 20,
-        "wbraganca/yii2-dynamicform": 20
+        "wbraganca/yii2-dynamicform": 20,
+        "mootensai/yii2-relation-trait": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

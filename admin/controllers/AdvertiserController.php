@@ -2,13 +2,13 @@
 
 namespace admin\controllers;
 
-use common\models\User;
-use Yii;
 use common\models\Advertiser;
+use common\models\User;
 use common\search\AdvertiserSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * AdvertiserController implements the CRUD actions for Advertiser model.
@@ -54,7 +54,21 @@ class AdvertiserController extends Controller
         $searchModel = new AdvertiserSearch();
         $dataProvider = $searchModel->certificateSearch(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('certificated', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    /**
+     * Lists all Advertiser models.
+     * @return mixed
+     */
+    public function actionCertifying()
+    {
+        $searchModel = new AdvertiserSearch();
+        $dataProvider = $searchModel->certifyingSearch(Yii::$app->request->queryParams);
+
+        return $this->render('certifying', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

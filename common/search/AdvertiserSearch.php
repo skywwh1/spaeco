@@ -78,7 +78,6 @@ class AdvertiserSearch extends Advertiser
             'confirmed' => $this->confirmed,
             'suspended' => $this->suspended,
             'deleted' => $this->deleted,
-            'profile_complete' => 50,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
@@ -106,6 +105,8 @@ class AdvertiserSearch extends Advertiser
             ->andFilterWhere(['like', 'lang', $this->lang])
             ->andFilterWhere(['like', 'timezone', $this->timezone])
             ->andFilterWhere(['like', 'ip_whitelist', $this->ip_whitelist])
+            ->andFilterWhere(['<>', 'profile_complete', 100])
+            ->andFilterWhere(['<>', 'approved', 1])
             ->andFilterWhere(['like', 'note', $this->note]);
 
         return $dataProvider;
@@ -176,9 +177,81 @@ class AdvertiserSearch extends Advertiser
             ->andFilterWhere(['like', 'lang', $this->lang])
             ->andFilterWhere(['like', 'timezone', $this->timezone])
             ->andFilterWhere(['like', 'ip_whitelist', $this->ip_whitelist])
-            ->andFilterWhere(['<>', 'profile_complete', 50])
+            ->andFilterWhere(['=', 'profile_complete', 100])
+            ->andFilterWhere(['=', 'approved', 1])
             ->andFilterWhere(['like', 'note', $this->note]);
 
+        return $dataProvider;
+    }
+
+    public function certifyingSearch($params)
+    {
+        $query = Advertiser::find();
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'payment_term' => $this->payment_term,
+            'pm' => $this->pm,
+            'bd' => $this->bd,
+            'status' => $this->status,
+            'total_revenue' => $this->total_revenue,
+            'receivable' => $this->receivable,
+            'received' => $this->received,
+            'type' => $this->type,
+            'create_time' => $this->create_time,
+            'update_time' => $this->update_time,
+            'qq' => $this->qq,
+            'firstaccess' => $this->firstaccess,
+            'lastaccess' => $this->lastaccess,
+            'picture' => $this->picture,
+            'confirmed' => $this->confirmed,
+            'suspended' => $this->suspended,
+            'deleted' => $this->deleted,
+        ]);
+
+        $query->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'firstname', $this->firstname])
+            ->andFilterWhere(['like', 'lastname', $this->lastname])
+            ->andFilterWhere(['like', 'system', $this->system])
+            ->andFilterWhere(['like', 'contacts', $this->contacts])
+            ->andFilterWhere(['like', 'pricing_mode', $this->pricing_mode])
+            ->andFilterWhere(['like', 'auth_token', $this->auth_token])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['like', 'post_parameter', $this->post_parameter])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'cc_email', $this->cc_email])
+            ->andFilterWhere(['like', 'company', $this->company])
+            ->andFilterWhere(['like', 'country', $this->country])
+            ->andFilterWhere(['like', 'city', $this->city])
+            ->andFilterWhere(['like', 'address', $this->address])
+            ->andFilterWhere(['like', 'phone1', $this->phone1])
+            ->andFilterWhere(['like', 'phone2', $this->phone2])
+            ->andFilterWhere(['like', 'weixin', $this->weixin])
+            ->andFilterWhere(['like', 'skype', $this->skype])
+            ->andFilterWhere(['like', 'alipay', $this->alipay])
+            ->andFilterWhere(['like', 'lang', $this->lang])
+            ->andFilterWhere(['like', 'timezone', $this->timezone])
+            ->andFilterWhere(['like', 'ip_whitelist', $this->ip_whitelist])
+            ->andFilterWhere(['=', 'profile_complete', 100])
+            ->andFilterWhere(['<>', 'approved', 1])
+            ->andFilterWhere(['like', 'note', $this->note]);
         return $dataProvider;
     }
 }

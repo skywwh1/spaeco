@@ -39,6 +39,7 @@ class PublisherController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'title' => 'Register List',
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -54,6 +55,23 @@ class PublisherController extends Controller
         $dataProvider = $searchModel->certificateSearch(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'title' => 'Certificated List',
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all Publisher models.
+     * @return mixed
+     */
+    public function actionCertifying()
+    {
+        $searchModel = new PublisherSearch();
+        $dataProvider = $searchModel->certifyingSearch(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'title' => 'Certifying List',
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
