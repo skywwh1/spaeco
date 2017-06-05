@@ -18,12 +18,8 @@ use yii\web\IdentityInterface;
  * @property integer $payment_term
  * @property integer $pm
  * @property integer $bd
- * @property string $system
  * @property integer $status
  * @property string $contacts
- * @property double $total_revenue
- * @property double $receivable
- * @property double $received
  * @property string $pricing_mode
  * @property integer $type
  * @property string $auth_token
@@ -86,9 +82,8 @@ class Advertiser extends ActiveRecord implements IdentityInterface
         return [
             [['username', 'email'], 'required'],
             [['payment_term', 'pm', 'status', 'type', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'profile_complete', 'approved'], 'integer'],
-            [['total_revenue', 'receivable', 'received'], 'number'],
             [['note'], 'string'],
-            [['username', 'firstname', 'lastname', 'system', 'pricing_mode', 'alipay', 'timezone'], 'string', 'max' => 100],
+            [['username', 'firstname', 'lastname', 'pricing_mode', 'alipay', 'timezone'], 'string', 'max' => 100],
             [['contacts', 'password_hash', 'password_reset_token', 'post_parameter', 'company', 'address', 'ip_whitelist', 'name_card_path'], 'string', 'max' => 255],
             [['auth_token', 'auth_key'], 'string', 'max' => 32],
             [['email', 'cc_email', 'weixin', 'skype'], 'string', 'max' => 50],
@@ -120,12 +115,8 @@ class Advertiser extends ActiveRecord implements IdentityInterface
             'payment_term' => 'Payment Term',
             'pm' => 'PM',
             'bd' => 'BD',
-            'system' => 'System',
             'status' => 'Status',
             'contacts' => 'Contacts',
-            'total_revenue' => 'Total Revenue',
-            'receivable' => 'Receivable',
-            'received' => 'Received',
             'pricing_mode' => 'Pricing Mode',
             'type' => 'Type',
             'auth_token' => 'Auth Token',

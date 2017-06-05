@@ -169,10 +169,9 @@ class ModelsUtil
     );
 
     const campaign_status = array(
-        '' => 'All',
-        '1' => 'Running',
+        '1' => 'Active',
         '2' => 'Paused',
-//        '3' => 'Rejected',
+        '3' => 'Pending',
     );
 
     const pending_status = array(
@@ -261,9 +260,18 @@ class ModelsUtil
     const platform_new = array(
         'ios' => 'IOS',
         'android' => 'Android',
-        'windows' => 'Windows',
-        'other' => 'Others',
     );
+
+    const geography = array(
+        'All global GEOs ' => 'All global GEOs',
+        'Specific GEOs' => 'Specific GEOs',
+        'All global GEOs except' => 'All global GEOs except '
+    );
+
+    public static function getGeography($k)
+    {
+        return static::getValue(static::geography, $k);
+    }
 
     public static function getPayableStatus($k)
     {

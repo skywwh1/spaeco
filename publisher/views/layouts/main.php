@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use common\models\Message;
 use frontend\assets\SbAppAsset;
 use publisher\assets\AppAsset;
 use yii\helpers\Html;
@@ -39,6 +40,36 @@ AppAsset::register($this);
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <?php
+                    $message = Message::findUnread(Yii::$app->user->id);
+                    if (!empty($message)) {
+                        foreach ($message as $item) {
+                            ?>
+                            <li>
+                                <a href="<?=\yii\helpers\Url::to(['/message/view?id='.$item->send_id])?>">
+                                    <div>
+                                        <strong><?= \common\models\Advertiser::findOne($item->send_id)->username ?></strong></strong>
+                                        <span class="pull-right text-muted">
+                                        <em><?= date('Y-m-d h:i:s', $item->create_time) ?></em>
+                                    </span>
+                                    </div>
+                                    <div> <?= $item->messageContent->content ?></div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <?php
+                        }
+                    }
+                    ?>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     Welcome <?= Yii::$app->user->identity->username ?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
@@ -71,14 +102,24 @@ AppAsset::register($this);
                         <a href="../camp-log/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
+                        <a href="#"><i class="fa fa-user fa-fw"></i> Advertiser<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/advertiser/index" data-menu="advertiser-index">Advertiser List</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
+                    <li>
                         <a href="#"><i class="fa fa-files-o fa-fw"></i> Offers<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <?= Html::a('All Offers', ['camp-log/alloffers'],['data-menu'=>"alloffers"]) ?>
+                                <?= Html::a('All Offers', ['camp-log/alloffers'], ['data-menu' => "alloffers"]) ?>
                             </li>
 
                             <li>
-                                <?= Html::a('My Approved Offers', ['camp-log/myoffers'],['data-menu'=>"myoffers"]) ?>
+                                <?= Html::a('My Approved Offers', ['camp-log/myoffers'], ['data-menu' => "myoffers"]) ?>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -93,7 +134,7 @@ AppAsset::register($this);
                                 <?php //  Html::a('Daily Report', ['my-report/daily'],['data-menu'=>"daily"]) ?>
                             </li>
                             <li>
-                                <?=  Html::a('Offers Report', ['my-report/offers'],['data-menu'=>"offers"]) ?>
+                                <?= Html::a('Offers Report', ['my-report/offers'], ['data-menu' => "offers"]) ?>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

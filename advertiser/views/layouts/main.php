@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use advertiser\assets\AppAsset;
+use common\models\Message;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
@@ -37,6 +38,35 @@ AppAsset::register($this);
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <?php
+                    $message = Message::findUnread(Yii::$app->user->id);
+                    if (!empty($message)) {
+                        foreach ($message as $item) {
+                            ?>
+                            <li>
+                                <a href="<?=\yii\helpers\Url::to(['/message/view?id='.$item->send_id])?>">
+                                    <div>
+                                        <strong><?= \common\models\Publisher::findOne($item->send_id)->username ?></strong></strong>
+                                        <span class="pull-right text-muted">
+                                        <em><?= date('Y-m-d h:i:s', $item->create_time) ?></em>
+                                    </span>
+                                    </div>
+                                    <div> <?= $item->messageContent->content ?></div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <?php
+                        }
+                    }
+                    ?>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     Welcome <?= Yii::$app->user->identity->username ?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -88,6 +118,16 @@ AppAsset::register($this);
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    <li>
+                        <a href="#"><i class="fa fa-user fa-fw"></i> Publisher<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= Html::a('Publisher List', ['publisher/index'], ['data-menu' => "publisher-index"]) ?>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
                     <!--                    <li>-->
                     <!--                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reports<span class="fa arrow"></span></a>-->
                     <!--                        <ul class="nav nav-second-level">-->

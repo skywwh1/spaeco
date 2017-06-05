@@ -173,7 +173,7 @@ unset($this->assetManager->getBundle('advertiser\assets\AppAsset')->js[0]);
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <img src="http://advertiser.spaeco.com/util/show-name-card?path=<?= $model->name_card_path ?>">
+                <img src="/util/show-name-card?path=<?= $model->name_card_path ?>">
             </div>
         </div>
     </div>
