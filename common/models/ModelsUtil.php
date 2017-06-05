@@ -42,11 +42,9 @@ class ModelsUtil
         9 => "OM"
     );
     const advertiser_status = array(
-        1 => 'Available',
-        2 => 'Building',
-        3 => 'Trying',
-        4 => 'Pending',
-        5 => 'Excluded',
+        1 => 'Register',
+        2 => 'Certifying',
+        3 => 'Certificated',
     );
 
     const system = array(
@@ -267,6 +265,15 @@ class ModelsUtil
         'Specific GEOs' => 'Specific GEOs',
         'All global GEOs except' => 'All global GEOs except '
     );
+    const advertiser_type = array(
+        '1' => 'Developer',
+        '2' => 'Agency',
+    );
+
+    public static function getAdvertiserType($k)
+    {
+        return static::getValue(static::advertiser_type, $k);
+    }
 
     public static function getGeography($k)
     {

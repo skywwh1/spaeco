@@ -44,32 +44,28 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
 
                         'id',
-                        'username',
+                        'email',
 //                        'settlement_type',
                         [
-                            'attribute' => 'payment_term',
-                            'value' => function ($data) {
-                                return ModelsUtil::getPaymentTerm($data->payment_term);
-                            },
-                            'filter' => ModelsUtil::payment_term,
+                            'label' => 'Full Name',
+                            'attribute' => 'firstname',
                         ],
                         [
-                            'attribute' => 'bd',
-                            'value' => 'bd0.username',
-                            'filter' => false,
+                            'attribute' => 'company',
+
                         ],
 
-                        'system',
-                        [
-                            'attribute' => 'status',
-                            'value' => function ($data) {
-                                return ModelsUtil::getAdvertiserStatus($data->status);
-                            },
-                            'filter' => ModelsUtil::advertiser_status,
-                        ],
-                        // 'contacts',
+                        'country',
+//                        [
+//                            'attribute' => 'status',
+//                            'value' => function ($data) {
+//                                return ModelsUtil::getAdvertiserStatus($data->status);
+//                            },
+//                            'filter' => ModelsUtil::advertiser_status,
+//                        ],
                         'pricing_mode',
-                        'auth_token',
+                        'type',
+                        'profile_complete',
 //                        'created_time:datetime',
                         // 'type',
                         // 'auth_key',
@@ -97,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         // 'deleted',
                         // 'cc_email:email',
                         // 'traffic_source',
-                        'note:ntext',
+                        'status',
 
 
                     ],

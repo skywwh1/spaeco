@@ -19,8 +19,7 @@ class AdvertiserSearch extends Advertiser
     {
         return [
             [['id', 'payment_term', 'pm', 'bd', 'status', 'type', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'profile_complete'], 'integer'],
-            [['username', 'firstname', 'lastname', 'system', 'contacts', 'pricing_mode', 'auth_token', 'auth_key', 'password_hash', 'password_reset_token', 'post_parameter', 'email', 'cc_email', 'company', 'country', 'city', 'address', 'phone1', 'phone2', 'weixin', 'skype', 'alipay', 'lang', 'timezone', 'ip_whitelist', 'note'], 'safe'],
-            [['total_revenue', 'receivable', 'received'], 'number'],
+            [['username', 'firstname', 'lastname', 'contacts', 'pricing_mode', 'auth_token', 'auth_key', 'password_hash', 'password_reset_token', 'post_parameter', 'email', 'cc_email', 'company', 'country', 'city', 'address', 'phone1', 'phone2', 'weixin', 'skype', 'alipay', 'lang', 'timezone', 'ip_whitelist', 'note'], 'safe'],
         ];
     }
 
@@ -65,9 +64,6 @@ class AdvertiserSearch extends Advertiser
             'pm' => $this->pm,
             'bd' => $this->bd,
             'status' => $this->status,
-            'total_revenue' => $this->total_revenue,
-            'receivable' => $this->receivable,
-            'received' => $this->received,
             'type' => $this->type,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
@@ -83,7 +79,6 @@ class AdvertiserSearch extends Advertiser
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'firstname', $this->firstname])
             ->andFilterWhere(['like', 'lastname', $this->lastname])
-            ->andFilterWhere(['like', 'system', $this->system])
             ->andFilterWhere(['like', 'contacts', $this->contacts])
             ->andFilterWhere(['like', 'pricing_mode', $this->pricing_mode])
             ->andFilterWhere(['like', 'auth_token', $this->auth_token])
@@ -137,9 +132,6 @@ class AdvertiserSearch extends Advertiser
             'pm' => $this->pm,
             'bd' => $this->bd,
             'status' => $this->status,
-            'total_revenue' => $this->total_revenue,
-            'receivable' => $this->receivable,
-            'received' => $this->received,
             'type' => $this->type,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
@@ -155,7 +147,6 @@ class AdvertiserSearch extends Advertiser
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'firstname', $this->firstname])
             ->andFilterWhere(['like', 'lastname', $this->lastname])
-            ->andFilterWhere(['like', 'system', $this->system])
             ->andFilterWhere(['like', 'contacts', $this->contacts])
             ->andFilterWhere(['like', 'pricing_mode', $this->pricing_mode])
             ->andFilterWhere(['like', 'auth_token', $this->auth_token])
@@ -209,9 +200,6 @@ class AdvertiserSearch extends Advertiser
             'pm' => $this->pm,
             'bd' => $this->bd,
             'status' => $this->status,
-            'total_revenue' => $this->total_revenue,
-            'receivable' => $this->receivable,
-            'received' => $this->received,
             'type' => $this->type,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
@@ -227,8 +215,6 @@ class AdvertiserSearch extends Advertiser
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'firstname', $this->firstname])
             ->andFilterWhere(['like', 'lastname', $this->lastname])
-            ->andFilterWhere(['like', 'system', $this->system])
-            ->andFilterWhere(['like', 'contacts', $this->contacts])
             ->andFilterWhere(['like', 'pricing_mode', $this->pricing_mode])
             ->andFilterWhere(['like', 'auth_token', $this->auth_token])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
