@@ -11,7 +11,7 @@ use yii\base\Model;
  */
 class AdvLoginForm extends Model
 {
-    public $username;
+    public $email;
     public $password;
     public $rememberMe = true;
     public $verifyCode;
@@ -24,8 +24,8 @@ class AdvLoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
-            [['username', 'password'], 'required'],
+            // email and password are both required
+            [['email', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -46,13 +46,13 @@ class AdvLoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Incorrect email or password.');
             }
         }
     }
 
     /**
-     * Logs in a user using the provided username and password.
+     * Logs in a user using the provided email and password.
      *
      * @return bool whether the user is logged in successfully
      */
@@ -66,14 +66,14 @@ class AdvLoginForm extends Model
     }
 
     /**
-     * Finds user by [[username]]
+     * Finds user by [[email]]
      *
      * @return Advertiser|null
      */
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = Advertiser::findByUsername($this->username);
+            $this->_user = Advertiser::findByEmail($this->email);
         }
 
         return $this->_user;

@@ -329,4 +329,15 @@ class Advertiser extends ActiveRecord implements IdentityInterface
         }
 
     }
+
+    /**
+     * Finds user by username
+     *
+     * @param $email
+     * @return null|static
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
+    }
 }

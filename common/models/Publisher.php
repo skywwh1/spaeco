@@ -92,6 +92,7 @@ class Publisher extends ActiveRecord implements IdentityInterface
         return 'publisher';
     }
 
+
     /**
      * @inheritdoc
      */
@@ -379,5 +380,14 @@ class Publisher extends ActiveRecord implements IdentityInterface
         if (!empty($a) && !empty($b) && !empty($c)) {
             $this->profile_complete = 100;
         }
+    }
+
+    /**
+     * @param $email
+     * @return static
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
     }
 }

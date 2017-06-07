@@ -52,6 +52,15 @@ class PubSignupForm extends Model
     }
 
     /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'firstname' => 'Full Name',
+        ];
+    }
+    /**
      * Signs user up.
      *
      * @return Publisher|null the saved model or null if saving fails

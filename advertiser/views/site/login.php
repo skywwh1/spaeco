@@ -23,7 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => 'login-form',
                 ]);
                 ?>
-                <?= $form->field($model, 'username')->input('text', ['class' => 'form-control', 'placeholder' => 'Username', 'autofocus' => true])->label(false) ?>
+                <div class="form-group field-advloginform-type">
+
+                    <?= Html::dropDownList('type', 'a', ['a' => 'Advertiser', 'b' => 'Publisher'], ['class' => 'form-control','id'=>'logintype']) ?>
+                </div>
+                <?= $form->field($model, 'email')->input('text', ['class' => 'form-control', 'placeholder' => 'Email', 'autofocus' => true])->label(false) ?>
                 <!--    <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
                 <?= $form->field($model, 'password')->input('password', ['class' => 'form-control', 'placeholder' => 'Password'])->label(false) ?>
                 <!--    <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
@@ -65,6 +69,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
-
+<?php
+$this->registerJsFile('@web/js/login.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]); ?>
 
 

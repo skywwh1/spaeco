@@ -50,7 +50,15 @@ class AdvSignupForm extends Model
             ['company', 'required'],
         ];
     }
-
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'firstname' => 'Full Name',
+        ];
+    }
     /**
      * Signs user up.
      *
