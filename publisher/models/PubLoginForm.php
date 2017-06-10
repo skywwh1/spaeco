@@ -4,6 +4,7 @@ namespace publisher\models;
 use common\models\Publisher;
 use Yii;
 use yii\base\Model;
+use yii\web\User;
 
 /**
  * Login form
@@ -58,6 +59,12 @@ class PubLoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            $user = \Yii::$app->user;
+            $user->on($user::EVENT_AFTER_LOGIN,function($event){
+                $admin=$event->identity;
+                $admin->lastaccess=time();
+                $admin->save();
+            });
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;

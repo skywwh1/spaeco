@@ -5,6 +5,7 @@ namespace publisher\controllers;
 use common\models\PubEducation;
 use common\models\PubExperience;
 use common\models\UploadForm;
+use publisher\models\ProfileForm;
 use Yii;
 use common\models\Publisher;
 use publisher\search\ProfileSearch;
@@ -12,6 +13,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\widgets\ActiveForm;
 
 /**
  * ProfileController implements the CRUD actions for Publisher model.
@@ -256,6 +258,33 @@ class ProfileController extends Controller
             } else {
                 var_dump($model->getErrors());
             }
+        }
+    }
+
+    public function actionUpdateExtend()
+    {
+        $model = new ProfileForm();
+        $model->beforeUpdateProfile();
+        if ($model->load(Yii::$app->request->post())) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->updateProfile()) {
+                return $this->goHome();
+            }
+        } else {
+            return $this->render('extend', [
+                'model' => $model,
+            ]);
+        }
+
+    }
+
+    public function actionValidateExtend()
+    {
+        $model = new ProfileForm();
+        $request = \Yii::$app->getRequest();
+        if ($request->isPost && $model->load($request->post())) {
+
+            $this->asJson(ActiveForm::validate($model));
         }
     }
 }

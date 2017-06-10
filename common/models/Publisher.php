@@ -57,15 +57,15 @@ use yii\web\IdentityInterface;
  * @property integer $suspended
  * @property integer $deleted
  * @property integer $status
- * @property string $traffic_source
+ * @property string $source
  * @property string $pricing_mode
  * @property string $note
  * @property string $post_back
  * @property integer $total_revenue
  * @property integer $payable
  * @property string $paid
- * @property string $strong_geo
- * @property string $strong_category
+ * @property string $geo
+ * @property string $vertical
  * @property integer $recommended
  * @property integer $os
  * @property integer $profile_complete
@@ -102,9 +102,9 @@ class Publisher extends ActiveRecord implements IdentityInterface
             [['username', 'email', 'firstname', 'company', 'address'], 'required'],
             [['type', 'pm', 'om', 'master_publisher', 'payment_term', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'status', 'total_revenue', 'payable', 'recommended', 'os', 'profile_complete', 'approved'], 'integer'],
             [['cc_email', 'note'], 'string'],
-            [['username', 'firstname', 'lastname', 'payment_way', 'beneficiary_name', 'system', 'contacts', 'alipay', 'timezone', 'traffic_source', 'pricing_mode'], 'string', 'max' => 100],
+            [['username', 'firstname', 'lastname', 'payment_way', 'beneficiary_name', 'system', 'contacts', 'alipay', 'timezone', 'source', 'pricing_mode'], 'string', 'max' => 100],
             [['auth_token', 'auth_key'], 'string', 'max' => 32],
-            [['password_hash', 'password_reset_token', 'bank_country', 'bank_name', 'bank_address', 'swift', 'account_nu_iban', 'company_address', 'company', 'address', 'post_back', 'paid', 'strong_geo', 'strong_category', 'name_card_path'], 'string', 'max' => 255],
+            [['password_hash', 'password_reset_token', 'bank_country', 'bank_name', 'bank_address', 'swift', 'account_nu_iban', 'company_address', 'company', 'address', 'post_back', 'paid', 'geo', 'vertical', 'name_card_path'], 'string', 'max' => 255],
             [['email', 'wechat', 'skype'], 'string', 'max' => 50],
             [['country'], 'string', 'max' => 10],
             [['city'], 'string', 'max' => 120],
@@ -172,15 +172,15 @@ class Publisher extends ActiveRecord implements IdentityInterface
             'suspended' => 'Suspended',
             'deleted' => 'Deleted',
             'status' => 'Status',
-            'traffic_source' => 'Traffic Source',
+            'source' => 'Traffic Source',
             'pricing_mode' => 'Pricing Mode',
             'note' => 'Note',
             'post_back' => 'Post Back',
             'total_revenue' => 'Total Revenue',
             'payable' => 'Payable',
             'paid' => 'Paid',
-            'strong_geo' => 'Strong Geo',
-            'strong_category' => 'Strong Category',
+            'geo' => 'Geo',
+            'vertical' => 'Vertical',
             'recommended' => 'Recommended',
             'os' => 'Os',
             'profile_complete' => 'Profile Complete',
@@ -390,4 +390,6 @@ class Publisher extends ActiveRecord implements IdentityInterface
     {
         return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
     }
+
+
 }

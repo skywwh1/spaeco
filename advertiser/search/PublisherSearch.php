@@ -19,7 +19,7 @@ class PublisherSearch extends Publisher
     {
         return [
             [['id', 'type', 'pm', 'om', 'master_publisher', 'payment_term', 'create_time', 'update_time', 'qq', 'firstaccess', 'lastaccess', 'picture', 'confirmed', 'suspended', 'deleted', 'status', 'total_revenue', 'payable', 'recommended', 'os', 'profile_complete', 'approved'], 'integer'],
-            [['username', 'firstname', 'lastname', 'auth_token', 'auth_key', 'password_hash', 'password_reset_token', 'payment_way', 'beneficiary_name', 'bank_country', 'bank_name', 'bank_address', 'swift', 'account_nu_iban', 'company_address', 'system', 'contacts', 'email', 'cc_email', 'company', 'country', 'city', 'address', 'phone1', 'phone2', 'wechat', 'skype', 'alipay', 'lang', 'timezone', 'traffic_source', 'pricing_mode', 'note', 'post_back', 'paid', 'strong_geo', 'strong_category', 'name_card_path'], 'safe'],
+            [['username', 'firstname', 'lastname', 'auth_token', 'auth_key', 'password_hash', 'password_reset_token', 'payment_way', 'beneficiary_name', 'bank_country', 'bank_name', 'bank_address', 'swift', 'account_nu_iban', 'company_address', 'system', 'contacts', 'email', 'cc_email', 'company', 'country', 'city', 'address', 'phone1', 'phone2', 'wechat', 'skype', 'alipay', 'lang', 'timezone', 'source', 'pricing_mode', 'note', 'post_back', 'paid', 'geo', 'vertical', 'name_card_path'], 'safe'],
         ];
     }
 
@@ -113,13 +113,13 @@ class PublisherSearch extends Publisher
             ->andFilterWhere(['like', 'alipay', $this->alipay])
             ->andFilterWhere(['like', 'lang', $this->lang])
             ->andFilterWhere(['like', 'timezone', $this->timezone])
-            ->andFilterWhere(['like', 'traffic_source', $this->traffic_source])
+            ->andFilterWhere(['like', 'source', $this->source])
             ->andFilterWhere(['like', 'pricing_mode', $this->pricing_mode])
             ->andFilterWhere(['like', 'note', $this->note])
             ->andFilterWhere(['like', 'post_back', $this->post_back])
             ->andFilterWhere(['like', 'paid', $this->paid])
-            ->andFilterWhere(['like', 'strong_geo', $this->strong_geo])
-            ->andFilterWhere(['like', 'strong_category', $this->strong_category])
+            ->andFilterWhere(['like', 'geo', $this->geo])
+            ->andFilterWhere(['like', 'vertical', $this->vertical])
             ->andFilterWhere(['like', 'name_card_path', $this->name_card_path]);
 
         return $dataProvider;

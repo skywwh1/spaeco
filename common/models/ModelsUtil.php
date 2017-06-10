@@ -15,12 +15,15 @@ class ModelsUtil
 
     const settlement_type = array(1 => 'Weekly', 2 => 'Monthly');
     const pricing_mode = array(
-        1 => "CPI",
-        2 => "CPA",
-        3 => "CPM",
-        4 => "CPC",
-        5 => "CPO",
-        6 => "CPS",
+        'CPA'=>'CPA',
+        'CPC'=>'CPC',
+        'CPD'=>'CPD',
+        'CPI'=>'CPI',
+        'CPL'=>'CPL',
+        'CPM'=>'CPM',
+        'CPO'=>'CPO',
+        'CPS'=>'CPS',
+        'CPV'=>'CPV',
     );
     const status = array(
         0 => 'No',
@@ -268,6 +271,65 @@ class ModelsUtil
     const advertiser_type = array(
         '1' => 'Developer',
         '2' => 'Agency',
+    );
+    const vertical = array(
+        'Adult' => 'Adult',
+        'Agriculture' => 'Agriculture',
+        'Apps' => 'Apps',
+        'Beauty' => 'Beauty',
+        'Casino Gambling' => 'Casino Gambling',
+        'Coupons' => 'Coupons',
+        'Dating' => 'Dating',
+        'E-commerce' => 'E-commerce',
+        'Education' => 'Education',
+        'Ethnic' => 'Ethnic',
+        'Fashion' => 'Fashion',
+        'Finance' => 'Finance',
+        'Forex/Binary' => 'Forex/Binary',
+        'Games' => 'Games',
+        'Health' => 'Health',
+        'Holiday-Travel' => 'Holiday-Travel',
+        'Home improvement' => 'Home improvement',
+        'Insurance' => 'Insurance',
+        'Investors' => 'Investors',
+        'Lotto' => 'Lotto',
+        'Make money' => 'Make money',
+        'Mass Tort' => 'Mass Tort',
+        'Mobile content' => 'Mobile content',
+        'Mortgage 9' => 'Mortgage 9',
+        'Nightlife' => 'Nightlife',
+        'Pension' => 'Pension',
+        'Real Estate' => 'Real Estate',
+        'Software' => 'Software',
+        'Solar' => 'Solar',
+        'Sports Betting' => 'Sports Betting',
+        'Surveys' => 'Surveys',
+        'Tech' => 'Tech',
+        'TV' => 'TV'
+    );
+
+    const source = array(
+        'Affiliation' => 'Affiliation',
+        'Blogs/Forums' => 'Blogs/Forums',
+        'Co-registration' => 'Co-registration',
+        'Database' => 'Database',
+        'Display' => 'Display',
+        'Email Marketing' => 'Email Marketing',
+        'IB' => 'IB',
+        'Incent' => 'Incent',
+        'Lead' => 'Lead',
+        'Generation' => 'Generation',
+        'Non-Incent' => 'Non-Incent',
+        'Podcasting' => 'Podcasting',
+        'Pop Up/Under' => 'Pop Up/Under',
+        'Pre-call' => 'Pre-call',
+        'Rating Sites' => 'Rating Sites',
+        'RTB' => 'RTB',
+        'Search' => 'Search',
+        'Engine' => 'Engine',
+        'Social Media' => 'Social Media',
+        'Video' => 'Video',
+        'Other' => 'Other'
     );
 
     public static function getAdvertiserType($k)

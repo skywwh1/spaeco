@@ -87,12 +87,22 @@ class SiteController extends Controller
     {
         $this->layout = 'login';
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            $pub = Yii::$app->user->identity;
+            if ($pub->firstaccess == 0) {
+                return $this->redirect(['profile/update-extend']);
+            } else {
+                return $this->goBack();
+            }
         }
 
         $model = new PubLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            $pub = Yii::$app->user->identity;
+            if ($pub->firstaccess == 0) {
+                return $this->redirect(['profile/update-extend']);
+            } else {
+                return $this->goBack();
+            }
         } else {
             return $this->render('login', [
                 'model' => $model,
